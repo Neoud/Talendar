@@ -3,22 +3,22 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@color/black"
+        android:icon="@drawable/ic_baseline_home_24"
         android:title="主页"/>
 
     <item
         android:id="@+id/nav_tale_solitaire"
-        android:icon="@color/black"
+        android:icon="@drawable/ic_baseline_solitaire_24"
         android:title="故事接龙"/>
 
     <item
         android:id="@+id/nav_post"
-        android:icon="@color/black"
+        android:icon="@drawable/ic_baseline_forum_24"
         android:title="论坛"/>
 
     <item
         android:id="@+id/nav_user"
-        android:icon="@color/black"
+        android:icon="@drawable/ic_baseline_user_24"
         android:title="我的"/>
 
 </menu>
