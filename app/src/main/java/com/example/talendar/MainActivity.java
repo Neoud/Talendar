@@ -4,12 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.talendar.userinfo.UserInfoFragment;
+import com.example.talendar.data.user.UserRemoteDataSource;
+import com.example.talendar.userinfo.UserSystemInfoFragment;
+import com.example.talendar.userinfo.UserSystemInfoPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
+    private UserSystemInfoPresenter mUserInfoPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // 创建各个模块的碎片
-        UserInfoFragment userInfoFragment = UserInfoFragment.newInstance();
+        UserSystemInfoFragment USInfoFragment = UserSystemInfoFragment.newInstance();
 
         // 注册底部导航栏监听事件
         BottomNavigationView bnView = findViewById(R.id.bottom_nav_view);
@@ -35,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
 //                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, userInfoFragment).commit();
                         break;
                     case R.id.nav_user:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, userInfoFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, USInfoFragment).commit();
+                        Log.d(TAG, "onNavigationItemSelected: init user and system info presenter");
+                        mUserInfoPresenter = new UserSystemInfoPresenter(new UserRemoteDataSource(), USInfoFragment);
                         break;
                 }
                 return true;
