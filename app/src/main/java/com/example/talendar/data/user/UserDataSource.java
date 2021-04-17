@@ -5,14 +5,16 @@ import android.graphics.Bitmap;
 import cn.bmob.v3.exception.BmobException;
 
 public interface UserDataSource {
-    interface loginInCallBack {
-        void onUserLoginIn(String objectId);
-        void onDataNotAvailable(BmobException e);
+    interface RegisterOrLoginInCallBack {
+        void onUserRegisterOrLoginIn(String objectId);
+        void onDataNotAvailable(String message);
     }
-    interface getUserInfoCallBack {
+    interface GetUserInfoCallBack {
         void onUserInfoGot(User user);
-        void onDataNotAvailable(BmobException e);
+        void onDataNotAvailable(String message);
     }
-    void loginIn(String username, String password);
-    void getUserInfo(String objectId);
+    void registerOrLoginIn(String username, String password, RegisterOrLoginInCallBack callBack);
+    void getUserInfo(String objectId, GetUserInfoCallBack callBack);
+    void register(String username, String password, RegisterOrLoginInCallBack callBack);
+    void login(String username, String password, RegisterOrLoginInCallBack callBack);
 }

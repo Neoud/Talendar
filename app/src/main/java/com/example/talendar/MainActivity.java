@@ -1,8 +1,10 @@
 package com.example.talendar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,16 +16,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private UserSystemInfoPresenter mUserInfoPresenter;
-
+    private UserSystemInfoFragment USInfoFragment;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 创建各个模块的碎片
-        UserSystemInfoFragment USInfoFragment = UserSystemInfoFragment.newInstance();
-
+        USInfoFragment = UserSystemInfoFragment.newInstance();
         // 注册底部导航栏监听事件
         BottomNavigationView bnView = findViewById(R.id.bottom_nav_view);
         bnView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_user:
                         getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, USInfoFragment).commit();
                         Log.d(TAG, "onNavigationItemSelected: init user and system info presenter");
-                        mUserInfoPresenter = new UserSystemInfoPresenter(new UserRemoteDataSource(), USInfoFragment);
+                        new UserSystemInfoPresenter(new UserRemoteDataSource(), USInfoFragment);
                         break;
                 }
                 return true;
@@ -60,5 +60,14 @@ public class MainActivity extends AppCompatActivity {
      */
     private void init() {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (USInfoFragment != null) {
+            Log.d(TAG, "onActivityResult: 开始调用UserSystemInfoFragment的onActivityResult方法");
+            USInfoFragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

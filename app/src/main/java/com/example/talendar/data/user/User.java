@@ -22,6 +22,10 @@ public class User extends BmobUser {
     private List<String> taleSolitaires;
     private List<String> posts;
 
+    public User() {
+
+    }
+
     public String getNickname() {
         return nickname;
     }

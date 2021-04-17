@@ -3,7 +3,6 @@ package com.example.talendar.userinfo;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.CallLog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,20 +15,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.talendar.MainActivity;
 import com.example.talendar.R;
+import com.example.talendar.login.RegisterOrLoginActivity;
+import com.example.talendar.login.RegisterOrLoginFragment;
 import com.shehuan.niv.NiceImageView;
-
-import org.w3c.dom.Text;
 
 import static android.content.ContentValues.TAG;
 
 public class UserSystemInfoFragment extends Fragment implements UserSystemInfoContract.View {
-
-    private View view;
-    private UserSystemInfoContract.Presenter mPresenter;
-
     private final int REQUEST_CODE_LOGIN = 1;
+
+    private UserSystemInfoContract.Presenter mPresenter;
+    private View view;
+
     private Button btnLogin;
     private NiceImageView niVProfile;
     private TextView tvNick, tvDesc, tvFollowNum, tvFansNum, tvLevel, tvSex, tvAge, tvArea, tvSchool, tvQuotes;
@@ -65,6 +63,7 @@ public class UserSystemInfoFragment extends Fragment implements UserSystemInfoCo
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "onClick: 开始跳转" + getActivity().getLocalClassName());
                 Intent loginIntent = new Intent(getActivity(), RegisterOrLoginActivity.class);
                 startActivityForResult(loginIntent, REQUEST_CODE_LOGIN);
             }
@@ -78,19 +77,27 @@ public class UserSystemInfoFragment extends Fragment implements UserSystemInfoCo
     }
 
     @Override
-    public void setLoginBtnVisibility(String visibility) {
-
+    public void setLoginBtnVisibility(int visibility) {
+        btnLogin.setVisibility(visibility);
     }
 
     @Override
     public void showProfile(Bitmap profile) {
-        niVProfile.setImageBitmap(profile);
+        if (! (profile == null)) {
+            niVProfile.setImageBitmap(profile);
+        }
     }
 
     @Override
     public void showUserInfo(String nick, String desc, String followNum, String fansNum, String level, String sex, String age, String area, String school, String quotes) {
-        tvNick.setText(nick);
-        tvDesc.setText(desc);
+        if (nick.equals("-")) {
+            tvNick.setText("用户xxx");
+        } else {
+            tvNick.setText(nick);
+        }
+        if (!desc.equals("-")){
+            tvDesc.setText(desc);
+        }
         tvFollowNum.setText(followNum);
         tvFansNum.setText(fansNum);
         tvLevel.setText(level);
@@ -105,14 +112,14 @@ public class UserSystemInfoFragment extends Fragment implements UserSystemInfoCo
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         switch (requestCode) {
             case REQUEST_CODE_LOGIN:
-                String username = data.getExtras().getString("username");
-                String password = data.getExtras().getString("password");
-                mPresenter.loginIn(username, password);
+                String objectId = data.getExtras().getString("objectId");
+                Log.d(TAG, "onActivityResult: 成功返回用户信息页面(" + objectId + ")，并开始获取用户信息");
+                mPresenter.getUserInfo(objectId);
         }
     }
 
     @Override
-    public void showException(String exception) {
-        Toast.makeText(getContext(), exception, Toast.LENGTH_LONG).show();
+    public void showToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 }
