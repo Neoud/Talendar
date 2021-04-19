@@ -17,4 +17,11 @@ public interface UserDataSource {
     void getUserInfo(String objectId, GetUserInfoCallBack callBack);
     void register(String username, String password, RegisterOrLoginInCallBack callBack);
     void login(String username, String password, RegisterOrLoginInCallBack callBack);
+    void saveAge(String age, String objectId);
+    void saveArea(String area, String objectId);
+    void saveQuotes(String quotes, String objectId);
+    void saveSchool(String school, String objectId);
+    void saveSex(String sex, String objectId);
+    void saveNick(String nick, String objectId);
+    void saveDesc(String desc, String objectId);
 }

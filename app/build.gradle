@@ -7,6 +7,11 @@ android {
     buildToolsVersion "29.0.3"
     useLibrary 'org.apache.http.legacy'
 
+    sourceSets {
+        main.jniLibs.srcDirs = ['libs']
+    }
+
+
     defaultConfig {
         applicationId "com.example.talendar"
         minSdkVersion 24
@@ -44,6 +49,9 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.14.1'
     implementation 'com.squareup.okio:okio:2.2.2'
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    implementation 'com.afollestad.material-dialogs:core:0.9.1.0'
+    implementation 'com.afollestad.material-dialogs:commons:0.9.1.0'
 
     implementation 'com.github.SheHuan:NiceImageView:1.0.5'
 }

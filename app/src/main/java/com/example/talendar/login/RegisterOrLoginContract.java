@@ -11,8 +11,6 @@ public interface RegisterOrLoginContract {
     }
 
     interface View extends BaseView<Presenter> {
-        void showSnackBar(int code, String message);
-        void showToast(String message);
         void handleRegisterOrLoginInInfo(String objectId);
     }
 }

@@ -24,8 +24,8 @@ public class RegisterOrLoginFragment extends Fragment implements RegisterOrLogin
     public static final int VIEW_CODE_ET_USERNAME = 1; //用户名输入框code
     public static final int VIEW_CODE_ET_PASSWORD = 2; //密码输入框code
 
-    private RegisterOrLoginContract.Presenter mPresenter;
-    private View view;
+    private RegisterOrLoginContract.Presenter mPresenter; // fragment持有的对应模块的presenter
+    private View view; // fragment的布局
 
     private EditText ETusername, ETpassword;
     private Button btnRegisterOrLogin, btnForgetPassword;
@@ -68,6 +68,12 @@ public class RegisterOrLoginFragment extends Fragment implements RegisterOrLogin
         });
     }
 
+    /**
+     * @description 初始化fragment的presenter
+     * @param presenter 模块的presenter
+     * @author Pontus
+     * @date 2021/4/17 23:05
+     */
     @Override
     public void setPresenter(RegisterOrLoginContract.Presenter presenter) {
         mPresenter = presenter;

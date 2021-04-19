@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 初始化数据
         init();
     }
 
@@ -62,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * @description 从其他activity获取到数据后，通过在activity的onActivityResult方法中调用对应fragment的onActivityResult方法来展示数据
+     * @author Pontus
+     * @date 2021/4/17 23:16
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

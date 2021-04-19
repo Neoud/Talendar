@@ -17,13 +17,13 @@ public class RegisterOrLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_login);
         Log.d(TAG, "onCreate: 加载activity布局成功");
+
+        // 加载模块的fragment
         RegisterOrLoginFragment registerOrLoginFragment = RegisterOrLoginFragment.newInstance();
         getSupportFragmentManager().beginTransaction().replace(R.id.lt_for_registerOrLogin_replace, registerOrLoginFragment).commit();
+
+        // 初始化模块的presenter
         new RegisterOrLoginPresenter(new UserRemoteDataSource(), registerOrLoginFragment);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
 }

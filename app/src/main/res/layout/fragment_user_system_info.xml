@@ -24,6 +24,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             app:border_color="#FF7F24"
+            app:corner_radius="35dp"
             android:src="@drawable/cat" />
 
         <LinearLayout
@@ -270,6 +271,7 @@
             android:background="@color/black" />
 
         <Button
+            android:id="@+id/btn_edit_user_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

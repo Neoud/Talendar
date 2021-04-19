@@ -5,17 +5,12 @@ import android.util.Log;
 
 import com.example.talendar.data.user.UserDataSource;
 import com.example.talendar.data.user.UserRemoteDataSource;
-
 import java.util.regex.Pattern;
-
-import cn.bmob.v3.exception.BmobException;
-
-import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
 public class RegisterOrLoginPresenter implements RegisterOrLoginContract.Presenter, UserDataSource.RegisterOrLoginInCallBack{
-    private UserDataSource mUserDataSource;
-    private RegisterOrLoginContract.View mLoginView;
+    private UserRemoteDataSource mUserDataSource; //数据源引用
+    private RegisterOrLoginContract.View mLoginView; //fragment引用
 
     public RegisterOrLoginPresenter(UserRemoteDataSource userDataSource, RegisterOrLoginContract.View loginView) {
         mUserDataSource = userDataSource;
@@ -24,11 +19,23 @@ public class RegisterOrLoginPresenter implements RegisterOrLoginContract.Present
         Log.d(TAG, "RegisterOrLoginPresenter: RegisterOrLoginPresenter初始化成功");
     }
 
+    /**
+     * @description fragment初始化方法
+     * @author Pontus
+     * @date 2021/4/17 23:01
+     */
     @Override
     public void start() {
 
     }
 
+    /**
+     * @description 校验手机号或邮箱格式
+     * @param username 用户账号
+     * @return 格式正确返回true，格式错误返回false
+     * @author Pontus
+     * @date 2021/4/17 22:52
+     */
     public boolean checkUsernameForm(String username) {
         if ((username != null) && (!username.isEmpty())) {
             if (Pattern.matches("^1[3-9]\\d{9}$", username)) {
@@ -45,6 +52,13 @@ public class RegisterOrLoginPresenter implements RegisterOrLoginContract.Present
         }
     }
 
+    /**
+     * @description 校验密码格式，规则：长度再8-14之间
+     * @param password 用户输入的密码
+     * @return 格式正确返回true，格式错误返回false
+     * @author Pontus
+     * @date 2021/4/17 22:54
+     */
     public boolean checkPasswordForm(String password) {
         if ((password != null) && (!password.isEmpty())) {
             if (password.length() >= 8 && password.length() <= 14) {
@@ -58,6 +72,7 @@ public class RegisterOrLoginPresenter implements RegisterOrLoginContract.Present
             return false;
         }
     }
+
 
     @Override
     public void registerOrLoginIn(String username, String password) {
