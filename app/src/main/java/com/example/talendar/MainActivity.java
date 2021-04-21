@@ -9,14 +9,24 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.talendar.data.tale.TaleRemoteDataSource;
+import com.example.talendar.data.talesolitaire.TaleSolitaireRemoteDataSource;
+import com.example.talendar.data.user.User;
 import com.example.talendar.data.user.UserRemoteDataSource;
+import com.example.talendar.showcreation.MyCreationFragment;
+import com.example.talendar.showcreation.MyFollowedCreationFragment;
+import com.example.talendar.showcreation.ShowCreationFragment;
+import com.example.talendar.showcreation.ShowCreationPresenter;
 import com.example.talendar.userinfo.UserSystemInfoFragment;
 import com.example.talendar.userinfo.UserSystemInfoPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import cn.bmob.v3.BmobUser;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private UserSystemInfoFragment USInfoFragment;
+    private ShowCreationFragment showCreationFragment;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         USInfoFragment = UserSystemInfoFragment.newInstance();
+        showCreationFragment = ShowCreationFragment.newInstance();
         // 注册底部导航栏监听事件
         BottomNavigationView bnView = findViewById(R.id.bottom_nav_view);
         bnView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -36,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_tale_solitaire:
 //                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, view).commit();
                         break;
-                    case R.id.nav_post:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, userInfoFragment).commit();
+                    case R.id.nav_creation:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, showCreationFragment).commit();
                         break;
                     case R.id.nav_user:
                         getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, USInfoFragment).commit();
@@ -48,7 +59,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        bnView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
 
+            }
+        });
         init();
     }
 

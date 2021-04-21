@@ -28,7 +28,7 @@
             android:src="@drawable/cat" />
 
         <LinearLayout
-            android:id="@+id/text_user_basic_info"
+            android:id="@+id/linearLayout_user_basic_info"
             android:layout_width="240dp"
             android:layout_height="70dp"
             android:layout_margin="10dp"
@@ -68,15 +68,6 @@
                     android:text="无" />
             </LinearLayout>
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
-
 
     </RelativeLayout>
 
@@ -338,6 +329,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/relativeLayout_logout"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_margin="10dp">

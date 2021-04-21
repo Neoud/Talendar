@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.talendar.R;
 import com.example.talendar.edituserinfo.EditUserInfoActivity;
 import com.example.talendar.login.RegisterOrLoginActivity;
@@ -30,6 +34,7 @@ import com.shehuan.niv.NiceImageView;
 
 import java.io.File;
 
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UploadFileListener;
@@ -52,6 +57,7 @@ public class UserSystemInfoFragment extends Fragment implements UserSystemInfoCo
     private Button btnLogin, btnEditUserInfo;
     private NiceImageView niVProfile;
     private TextView tvNick, tvDesc, tvFollowNum, tvFansNum, tvLevel, tvSex, tvAge, tvArea, tvSchool, tvQuotes;
+    private RelativeLayout relativeLayoutLogout;
 
     public UserSystemInfoFragment() {}
 
@@ -64,6 +70,12 @@ public class UserSystemInfoFragment extends Fragment implements UserSystemInfoCo
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_user_system_info, null);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
     }
 
     @Override
@@ -81,10 +93,14 @@ public class UserSystemInfoFragment extends Fragment implements UserSystemInfoCo
         tvSchool = view.findViewById(R.id.text_school);
         tvQuotes = view.findViewById(R.id.text_quotes);
         btnLogin = view.findViewById(R.id.button_login);
+        relativeLayoutLogout = view.findViewById(R.id.relativeLayout_logout);
         btnEditUserInfo = view.findViewById(R.id.btn_edit_user_info);
         btnLogin.setOnClickListener(this);
         btnEditUserInfo.setOnClickListener(this);
         niVProfile.setOnClickListener(this);
+        relativeLayoutLogout.setOnClickListener(this);
+        tvFollowNum.setOnClickListener(this);
+        tvFansNum.setOnClickListener(this);
     }
 
     @Override
@@ -110,6 +126,26 @@ public class UserSystemInfoFragment extends Fragment implements UserSystemInfoCo
                 editInfoInent.putExtra("desc", tvDesc.getText().toString());
                 startActivityForResult(editInfoInent, REQUEST_CODE_EDIT_USER_INFO);
                 break;
+            case R.id.relativeLayout_logout:
+                if (BmobUser.isLogin()) {
+                    new MaterialDialog.Builder(getActivity())
+                            .title("退出登录")
+                            .content("确定退出登录吗？")
+                            .positiveText("确定")
+                            .negativeText("取消")
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    BmobUser.logOut();
+                                    niVProfile.setImageResource(R.drawable.cat);
+                                    showUserInfo("用户xxx", "-", "-", "-", "-", "-", "-", "-", "-","-");
+                                    mObjectId = null;
+                                }
+                            })
+                            .show();
+                } else {
+                    showToast("请先登录！");
+                }
             default:
                 break;
         }

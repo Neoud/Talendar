@@ -4,12 +4,14 @@ import android.graphics.Bitmap;
 import android.service.autofill.UserData;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.talendar.data.user.User;
 import com.example.talendar.data.user.UserDataSource;
 import com.example.talendar.data.user.UserRemoteDataSource;
-import cn.bmob.v3.datatype.BmobFile;
 
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import static android.content.ContentValues.TAG;
 
 
@@ -28,7 +30,15 @@ public class UserSystemInfoPresenter implements UserSystemInfoContract.Presenter
 
     @Override
     public void start() {
+        if (BmobUser.isLogin()) {
+            User user = BmobUser.getCurrentUser(User.class);
+            getUserInfo(user.getObjectId());
+            Log.d(TAG, "onClick: 已经登录：" + user.getUsername() + ", " + user.getAge());
+            mUserView.showToast("已经登录" + user.getObjectId());
+        } else {
 
+            mUserView.showToast("没有登录");
+        }
     }
 
     /**
@@ -40,7 +50,9 @@ public class UserSystemInfoPresenter implements UserSystemInfoContract.Presenter
     @Override
     public void getUserInfo(String objectId) {
         Log.d(TAG, "getUserInfo: 开始获取用户信息");
+        mUserView.showToast("开始获取用户信息");
         mUserSource.getUserInfo(objectId, this);
+        Log.d(TAG, "getUserInfo: 成功获取用户信息");
         Log.d(TAG, "getUserInfo: 成功获取用户信息");
     }
 
@@ -54,6 +66,7 @@ public class UserSystemInfoPresenter implements UserSystemInfoContract.Presenter
     @Override
     public void onUserInfoGot(User user) {
         Log.d(TAG, "onUserInfoGot: 开始加载用户信息");
+        mUserView.showToast("开始加载用户信息");
         mUserView.setLoginBtnVisibility(View.GONE);
         Bitmap profile = getProfileByBmobFile(user.getProfile());
         mUserView.showProfile(profile);
@@ -70,6 +83,7 @@ public class UserSystemInfoPresenter implements UserSystemInfoContract.Presenter
         quotes = checkUserInfo(user.getQuotes());
         mUserView.showUserInfo(nickname, desc, followNum, fansNum, level, sex, age, area, school, quotes);
         Log.d(TAG, "onUserInfoGot: 用户信息加载完成");
+        mUserView.showToast("用户信息加载完成");
     }
 
     @Override
