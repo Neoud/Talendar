@@ -6,13 +6,25 @@ public class Creation {
     String title;
     String content;
     String date;
-    List<String> tag;
+    String type;
+    String authorName;
+    List<String> tags;
 
-    public Creation(String title, String content, String date, List<String> tag) {
+    public Creation(String title, String content, String date, String type, List<String> tags) {
         this.title = title;
         this.content = content;
         this.date = date;
-        this.tag = tag;
+        this.type = type;
+        this.tags = tags;
+    }
+
+    public Creation(String title, String content, String date, String type, String authorName, List<String> tags) {
+        this.title = title;
+        this.content = content;
+        this.date = date;
+        this.type = type;
+        this.authorName = authorName;
+        this.tags = tags;
     }
 
     public String getTitle() {
@@ -27,8 +39,12 @@ public class Creation {
         return date;
     }
 
-    public List<String> getTag() {
-        return tag;
+    public String getType() {
+        return type;
+    }
+
+    public List<String> getTags() {
+        return tags;
     }
 
     public void setTitle(String title) {
@@ -43,7 +59,19 @@ public class Creation {
         this.date = date;
     }
 
-    public void setTag(List<String> tag) {
-        this.tag = tag;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 }

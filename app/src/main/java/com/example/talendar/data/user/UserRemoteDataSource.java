@@ -66,6 +66,7 @@ public class UserRemoteDataSource implements UserDataSource{
                 if (e == null) {
                     User user = list.get(0);
                     if (user != null) {
+                        Log.d(TAG, "done: 查询用户信息成功" + user.getObjectId());
                         callBack.onUserInfoGot(user);
                     } else {
                         Log.d(TAG, "done: 查询成功，未查到该用户信息");

@@ -1,10 +1,8 @@
 package com.example.talendar.data.user;
 
 import java.util.List;
-
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.datatype.BmobPointer;
 
 public class User extends BmobUser {
     private String nickname;
@@ -18,8 +16,8 @@ public class User extends BmobUser {
     private String school;
     private String quotes;
     private BmobFile profile;
-    private List<String> tales;
-    private List<String> taleSolitaires;
+    private List<String> tales; //收藏的tale
+    private List<String> taleSolitaires; //收藏的接龙tale
     private List<String> posts;
 
     public User() {

@@ -15,8 +15,8 @@ import static android.content.ContentValues.TAG;
 public class TaleSolitaireRemoteDataSource implements TaleSolitaireDataSource{
 
     @Override
-    public List<TaleSolitaire> getTaleSolitaireByObjectId(String objectId) {
-        final List<TaleSolitaire>[] taleSolitaireList = new List[]{null};
+    public void getTaleSolitaireByObjectId(String objectId, GetTaleSolitaireCallBack callBack) {
+        Log.d(TAG, "getTaleSolitaireByObjectId: 开始获取接龙故事列表");
         BmobQuery<TaleSolitaire> query = new BmobQuery<>();
         query.addWhereEqualTo("author", objectId);
         query.findObjects(new FindListener<TaleSolitaire>() {
@@ -24,14 +24,35 @@ public class TaleSolitaireRemoteDataSource implements TaleSolitaireDataSource{
             public void done(List<TaleSolitaire> list, BmobException e) {
                 if (e == null) {
                     Log.d(TAG, "done: 获取接龙故事列表成功，故事个数：" + list.size());
-                    taleSolitaireList[0] = list;
+                    callBack.onTaleSolitaireGot(list);
                 } else {
                     Log.d(TAG, "done: 获取接龙故事列表失败！");
-                    taleSolitaireList[0] = null;
+                    callBack.onDataNotAvailable("获取接龙故事失败" + e.toString());
                 }
             }
         });
-        Log.d(TAG, "getTaleByObjectId: " + taleSolitaireList[0].size());
-        return taleSolitaireList[0];
+
+    }
+
+    @Override
+    public void getTSByTSObjectIds(List<String> taleSolitaireObjectIds, GetTSByTSObjectIdsCallBack callBack) {
+        if (!(taleSolitaireObjectIds == null)) {
+            Log.d(TAG, "getTSByTSObjectIds: 开始获取接龙故事列表by ts ids");
+            BmobQuery<TaleSolitaire> bmobQuery = new BmobQuery<>();
+            bmobQuery.addWhereContainedIn("objectId", taleSolitaireObjectIds);
+            bmobQuery.findObjects(new FindListener<TaleSolitaire>() {
+                @Override
+                public void done(List<TaleSolitaire> list, BmobException e) {
+                    if (e == null) {
+                        Log.d(TAG, "done: 查询TS by TS Object Ids 成功" + list.size());
+                        callBack.onTSGotByTSObjectIds(list);
+                    } else {
+                        Log.d(TAG, "done: 查询TS by TS Object Ids 失败" + e.toString());
+                        callBack.onDataNotAvailable(e.toString());
+                    }
+                }
+            });
+        }
+
     }
 }

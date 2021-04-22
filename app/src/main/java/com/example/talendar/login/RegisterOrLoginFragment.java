@@ -100,7 +100,7 @@ public class RegisterOrLoginFragment extends Fragment implements RegisterOrLogin
 
     @Override
     public void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     /**

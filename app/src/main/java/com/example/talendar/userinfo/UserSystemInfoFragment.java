@@ -241,7 +241,7 @@ public class UserSystemInfoFragment extends Fragment implements UserSystemInfoCo
 
     @Override
     public void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -8,6 +8,7 @@ public class TaleSolitaire extends BmobObject {
     private String title;
     private String content;
     private String author;
+    private String authorName;
     private int fansNumber;
     private int commonsNumber;
     private List<String> tags;
@@ -40,6 +41,15 @@ public class TaleSolitaire extends BmobObject {
 
     public TaleSolitaire setAuthor(String author) {
         this.author = author;
+        return this;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public TaleSolitaire setAuthorName(String authorName) {
+        this.authorName = authorName;
         return this;
     }
 

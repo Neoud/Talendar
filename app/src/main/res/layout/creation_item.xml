@@ -2,7 +2,8 @@
 <androidx.cardview.widget.CardView
     android:id="@+id/cardView_my_creation"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
         android:orientation="vertical"
@@ -21,30 +22,46 @@
             android:id="@+id/text_my_creation_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxEms="200"
             android:layout_margin="5dp"
             android:textSize="12sp"
             android:text="content"/>
 
         <LinearLayout
+            android:layout_alignParentLeft="true"
             android:layout_margin="5dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <TextView
+                android:id="@+id/text_creation_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"/>
             <TextView
                 android:text="date"
                 android:id="@+id/text_my_creation_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"/>
+
             <TextView
-                android:text="tag"
-                android:id="@+id/text_my_creation_tag"
+                android:id="@+id/text_creation_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:textSize="10sp"
-                android:layout_marginLeft="10dp"/>
+                android:text="tale"/>
 
         </LinearLayout>
+
+        <TextView
+            android:text="tag"
+            android:id="@+id/text_my_creation_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

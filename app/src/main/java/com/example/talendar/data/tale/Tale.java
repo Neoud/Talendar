@@ -8,6 +8,7 @@ public class Tale extends BmobObject {
     private String title;
     private String content;
     private String author;
+    private String authorName;
     private int fansNumber;
     private int commonsNumber;
     private List<String> tags;
@@ -25,6 +26,10 @@ public class Tale extends BmobObject {
         return author;
     }
 
+    public String getAuthorName() {
+        return authorName;
+    }
+
     public int getFansNumber() {
         return fansNumber;
     }
@@ -36,7 +41,6 @@ public class Tale extends BmobObject {
     public List<String> getTags() {
         return tags;
     }
-
 
     public List<String> getCommons() {
         return commons;
@@ -54,6 +58,11 @@ public class Tale extends BmobObject {
 
     public Tale setAuthor(String author) {
         this.author = author;
+        return this;
+    }
+
+    public Tale setAuthorName(String authorName) {
+        this.authorName = authorName;
         return this;
     }
 

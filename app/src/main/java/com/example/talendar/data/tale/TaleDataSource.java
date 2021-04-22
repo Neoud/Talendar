@@ -7,6 +7,18 @@ import java.util.List;
 
 public interface TaleDataSource {
 
-    List<Tale> getTaleByObjectId(String objectId);
+    interface GetTaleCallBack {
+        void onTaleGot(List<Tale> taleList);
+        void onDataNotAvailable(String message);
+    }
 
+    interface GetTaleByTaleObjectIdsCallBack {
+        void onTaleGotByTaleObjectIds(List<Tale> taleList);
+        void onDataNotAvailable(String message);
+    }
+
+
+    void getTaleByObjectId(String objectId, GetTaleCallBack callBack);
+    void getTaleByTaleObjectIds(List<String> taleObjectIds, GetTaleByTaleObjectIdsCallBack callBack);
+    void saveTaleByObjectId(String objectId, Tale tale);
 }

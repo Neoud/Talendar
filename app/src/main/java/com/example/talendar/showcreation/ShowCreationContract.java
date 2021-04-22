@@ -11,7 +11,7 @@ import java.util.List;
 public interface ShowCreationContract {
 
     interface Presenter extends BasePresenter {
-        List<Creation> getCreation(List<Tale> taleList, List<TaleSolitaire> taleSolitaireList);
+        void loadFollowedCreation();
     }
 
     interface View extends BaseView<Presenter> {
@@ -19,6 +19,6 @@ public interface ShowCreationContract {
     }
 
     interface View2 extends BaseView<Presenter> {
-
+        void setCreationList(List<Creation> creationList);
     }
 }
