@@ -3,6 +3,7 @@ package com.example.talendar.data.bean;
 import java.util.List;
 
 public class Creation {
+    String creationId;
     String title;
     String content;
     String date;
@@ -10,7 +11,8 @@ public class Creation {
     String authorName;
     List<String> tags;
 
-    public Creation(String title, String content, String date, String type, List<String> tags) {
+    public Creation(String creationId, String title, String content, String date, String type, List<String> tags) {
+        this.creationId = creationId;
         this.title = title;
         this.content = content;
         this.date = date;
@@ -18,7 +20,8 @@ public class Creation {
         this.tags = tags;
     }
 
-    public Creation(String title, String content, String date, String type, String authorName, List<String> tags) {
+    public Creation(String creationId, String title, String content, String date, String type, String authorName, List<String> tags) {
+        this.creationId = creationId;
         this.title = title;
         this.content = content;
         this.date = date;
@@ -73,5 +76,13 @@ public class Creation {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public String getCreationId() {
+        return creationId;
+    }
+
+    public void setCreationId(String creationId) {
+        this.creationId = creationId;
     }
 }

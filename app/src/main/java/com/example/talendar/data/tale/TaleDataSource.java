@@ -20,5 +20,6 @@ public interface TaleDataSource {
 
     void getTaleByObjectId(String objectId, GetTaleCallBack callBack);
     void getTaleByTaleObjectIds(List<String> taleObjectIds, GetTaleByTaleObjectIdsCallBack callBack);
-    void saveTaleByObjectId(String objectId, Tale tale);
+    void saveTale(Tale tale);
+    void deleteTale(String objectId);
 }

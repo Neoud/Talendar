@@ -89,5 +89,9 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onActivityResult: 开始调用UserSystemInfoFragment的onActivityResult方法");
             USInfoFragment.onActivityResult(requestCode, resultCode, data);
         }
+        if (showCreationFragment != null) {
+            Log.d(TAG, "onActivityResult: 开始调用ShowCreationFragment的onActivityResult方法");
+            showCreationFragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

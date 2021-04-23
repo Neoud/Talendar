@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Talendar">
+        <activity android:name=".edittaleorts.EditTaleOrTSActivity"/>
         <activity android:name=".login.RegisterOrLoginActivity" />
         <activity android:name=".edituserinfo.EditUserInfoActivity"/>
         <activity android:name=".MainActivity">

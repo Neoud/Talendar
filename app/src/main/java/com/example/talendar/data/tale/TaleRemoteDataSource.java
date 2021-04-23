@@ -11,6 +11,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 import static android.content.ContentValues.TAG;
 
@@ -36,7 +37,7 @@ public class TaleRemoteDataSource implements TaleDataSource{
     }
 
     @Override
-    public void saveTaleByObjectId(String objectId, Tale tale) {
+    public void saveTale(Tale tale) {
         tale.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
@@ -69,5 +70,20 @@ public class TaleRemoteDataSource implements TaleDataSource{
                 }
             });
         }
+    }
+
+    @Override
+    public void deleteTale(String objectId) {
+        Tale tale = new Tale();
+        tale.delete(objectId, new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    Log.d(TAG, "done: 删除tale成功");
+                } else {
+                    Log.d(TAG, "done: 删除tale失败" + e.toString());
+                }
+            }
+        });
     }
 }

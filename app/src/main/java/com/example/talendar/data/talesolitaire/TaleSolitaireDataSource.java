@@ -19,4 +19,6 @@ public interface TaleSolitaireDataSource {
 
     void getTaleSolitaireByObjectId(String objectId, GetTaleSolitaireCallBack callBack);
     void getTSByTSObjectIds(List<String> taleSolitaireObjectIds, TaleSolitaireDataSource.GetTSByTSObjectIdsCallBack callBack);
+    void saveTS(TaleSolitaire ts);
+    void deleteTS(String objectId);
 }

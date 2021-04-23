@@ -56,7 +56,8 @@ public class ShowCreationPresenter implements ShowCreationContract.Presenter, Ta
         List<Creation> creationList = new ArrayList<>();
         for (int i = 0; i < taleList.size(); i ++) {
             Tale tale = taleList.get(i);
-            Creation creation = new Creation(tale.getTitle(), tale.getContent(), tale.getCreatedAt(), "故事", tale.getTags());
+            Log.d(TAG, "onTaleGot: 获取到用户信息，开始更新故事列表" + tale.getObjectId());
+            Creation creation = new Creation(tale.getObjectId(), tale.getTitle(), tale.getContent(), tale.getCreatedAt(), "故事", tale.getAuthorName(), tale.getTags());
             creationList.add(creation);
         }
         mShowCreationView.setCreationList(creationList);
@@ -67,7 +68,7 @@ public class ShowCreationPresenter implements ShowCreationContract.Presenter, Ta
         List<Creation> creationList = new ArrayList<>();
         for (int i = 0; i < taleSolitaireList.size(); i ++) {
             TaleSolitaire taleSolitaire = taleSolitaireList.get(i);
-            Creation creation = new Creation(taleSolitaire.getTitle(), taleSolitaire.getContent(), taleSolitaire.getCreatedAt(), "接龙故事", taleSolitaire.getTags());
+            Creation creation = new Creation(taleSolitaire.getObjectId(), taleSolitaire.getTitle(), taleSolitaire.getContent(), taleSolitaire.getCreatedAt(), "接龙故事", taleSolitaire.getAuthorName(), taleSolitaire.getTags());
             creationList.add(creation);
         }
         mShowCreationView.setCreationList(creationList);
@@ -85,7 +86,8 @@ public class ShowCreationPresenter implements ShowCreationContract.Presenter, Ta
         List<Creation> creationList = new ArrayList<>();
         for (int i = 0; i < taleList.size(); i ++) {
             Tale tale = taleList.get(i);
-            Creation creation = new Creation(tale.getTitle(), tale.getContent(), tale.getCreatedAt(), "故事", tale.getAuthorName(), tale.getTags());
+            Creation creation = new Creation(tale.getObjectId(), tale.getTitle(), tale.getContent(), tale.getCreatedAt(), "故事", tale.getAuthorName(), tale.getTags());
+            Log.d(TAG, "onTSGotByTSObjectIds: 添加creation进list" + creation.getCreationId());
             creationList.add(creation);
         }
         mShowFollowedCreationView.setCreationList(creationList);
@@ -96,7 +98,8 @@ public class ShowCreationPresenter implements ShowCreationContract.Presenter, Ta
         List<Creation> creationList = new ArrayList<>();
         for (int i = 0; i < taleSolitaireList.size(); i ++) {
             TaleSolitaire taleSolitaire = taleSolitaireList.get(i);
-            Creation creation = new Creation(taleSolitaire.getTitle(), taleSolitaire.getContent(), taleSolitaire.getCreatedAt(), "接龙故事", taleSolitaire.getAuthorName(), taleSolitaire.getTags());
+            Creation creation = new Creation(taleSolitaire.getObjectId(), taleSolitaire.getTitle(), taleSolitaire.getContent(), taleSolitaire.getCreatedAt(), "接龙故事", taleSolitaire.getAuthorName(), taleSolitaire.getTags());
+            Log.d(TAG, "onTSGotByTSObjectIds: 添加creation进list" + creation.getCreationId());
             creationList.add(creation);
         }
         mShowFollowedCreationView.setCreationList(creationList);
@@ -106,5 +109,19 @@ public class ShowCreationPresenter implements ShowCreationContract.Presenter, Ta
     public void onUserInfoGot(User user) {
         mTaleDataSource.getTaleByTaleObjectIds(user.getTales(), this);
         mTaleSolitaireDataSource.getTSByTSObjectIds(user.getTaleSolitaires(), this);
+    }
+
+    @Override
+    public void deleteCreation(Creation creation) {
+        switch (creation.getType()) {
+            case "故事":
+                Log.d(TAG, "deleteCreation: 删除tale" + creation.getCreationId());
+                mTaleDataSource.deleteTale(creation.getCreationId());
+                break;
+            case "接龙故事":
+                Log.d(TAG, "deleteCreation: 删除ts" + creation.getCreationId());
+                mTaleSolitaireDataSource.deleteTS(creation.getCreationId());
+                break;
+        }
     }
 }

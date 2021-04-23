@@ -12,6 +12,7 @@ public interface ShowCreationContract {
 
     interface Presenter extends BasePresenter {
         void loadFollowedCreation();
+        void deleteCreation(Creation creation);
     }
 
     interface View extends BaseView<Presenter> {
