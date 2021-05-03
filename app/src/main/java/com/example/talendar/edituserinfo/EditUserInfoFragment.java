@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ public class EditUserInfoFragment extends Fragment implements EditUserInfoContra
     private View view;
     private String mObjectId;
 
-    private RelativeLayout editSex, editAge, editArea, editSchool, editQuotes, editNick, editDesc;
+    private LinearLayout editSex, editAge, editArea, editSchool, editQuotes, editNick, editDesc;
     private TextView textSex, textAge, textArea, textSchool, textQuotes, textNick, textDesc;
     private Button btnOk;
 

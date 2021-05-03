@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.talendar.data.tale.Tale;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -85,5 +86,11 @@ public class TaleSolitaireRemoteDataSource implements TaleSolitaireDataSource{
                 }
             }
         });
+    }
+
+    @Override
+    public void getCreation(String objectId, GetCreationCallBack creationCallBack) {
+        List<TaleSolitaire> taleSolitaireList1 = new ArrayList<>();
+        creationCallBack.onCreationGot(taleSolitaireList1);
     }
 }

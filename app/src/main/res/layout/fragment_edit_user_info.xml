@@ -4,10 +4,11 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout_edit_nick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_margin="10dp">
         <TextView
             android:id="@+id/text_nick1"
@@ -16,15 +17,15 @@
             android:text="昵称：" />
         <TextView
             android:id="@+id/text_nick"
-            android:layout_toRightOf="@+id/text_nick1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout_edit_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_margin="10dp">
         <TextView
             android:id="@+id/text_desc1"
@@ -33,15 +34,15 @@
             android:text="简介：" />
         <TextView
             android:id="@+id/text_desc"
-            android:layout_toRightOf="@+id/text_desc1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout_edit_sex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_margin="10dp">
         <TextView
             android:id="@+id/text_sex1"
@@ -50,15 +51,15 @@
             android:text="性别：" />
         <TextView
             android:id="@+id/text_sex"
-            android:layout_toRightOf="@+id/text_sex1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout_edit_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_margin="10dp">
         <TextView
             android:id="@+id/text_age1"
@@ -66,16 +67,16 @@
             android:layout_height="wrap_content"
             android:text="年龄：" />
         <TextView
-            android:layout_toRightOf="@+id/text_age1"
             android:id="@+id/text_age"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout_edit_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_margin="10dp">
         <TextView
             android:id="@+id/text_area1"
@@ -84,15 +85,15 @@
             android:text="地区：" />
         <TextView
             android:id="@+id/text_area"
-            android:layout_toRightOf="@+id/text_area1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout_edit_school"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_margin="10dp">
 
         <TextView
@@ -102,15 +103,15 @@
             android:text="学校：" />
         <TextView
             android:id="@+id/text_school"
-            android:layout_toRightOf="@+id/text_school1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout_edit_quotes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_margin="10dp">
         <TextView
             android:id="@+id/text_quotes1"
@@ -119,17 +120,10 @@
             android:text="座右铭：" />
         <TextView
             android:id="@+id/text_quotes"
-            android:layout_toRightOf="@+id/text_quotes1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-<!--        <ImageView-->
-<!--            android:layout_width="15dp"-->
-<!--            android:layout_height="15dp"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:src="@drawable/ic_baseline_arrow_forward_ios_24"-->
-<!--            android:contentDescription="TODO" />-->
-    </RelativeLayout>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_edit_user_info_ok"

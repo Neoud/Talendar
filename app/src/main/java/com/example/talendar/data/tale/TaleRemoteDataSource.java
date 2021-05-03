@@ -86,4 +86,9 @@ public class TaleRemoteDataSource implements TaleDataSource{
             }
         });
     }
+
+    @Override
+    public void getTaleByTag(int tag, GetTaleByTagCallBack callBack) {
+
+    }
 }

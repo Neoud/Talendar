@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_height="wrap_content"
+    android:id="@+id/cardView_chapter"
+    android:layout_width="match_parent"
+    android:layout_margin="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:id="@+id/linearLayout_chapter_item"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout
+            android:id="@+id/linearLayout_chapter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/linearLayout_part_user_info_chapter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+                <com.shehuan.niv.NiceImageView
+                    android:id="@+id/NIV_chapter_profile"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:border_color="#FF7F24"
+                    app:corner_radius="35dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/cat"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/text_chapter_nickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Nick Name"/>
+                    <TextView
+                        android:id="@+id/text_chapter_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Comment Detail"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_part_creation_info_chapter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/text_chapter_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/text_chapter_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="60"
+                android:text="Content" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

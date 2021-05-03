@@ -138,6 +138,7 @@ public class UserSystemInfoFragment extends Fragment implements UserSystemInfoCo
                                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                     BmobUser.logOut();
                                     niVProfile.setImageResource(R.drawable.cat);
+                                    btnLogin.setVisibility(View.VISIBLE);
                                     showUserInfo("用户xxx", "-", "-", "-", "-", "-", "-", "-", "-","-");
                                     mObjectId = null;
                                 }

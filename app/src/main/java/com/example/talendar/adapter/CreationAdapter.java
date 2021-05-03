@@ -1,25 +1,20 @@
 package com.example.talendar.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.talendar.R;
 import com.example.talendar.data.bean.Creation;
-import com.example.talendar.data.tale.TaleRemoteDataSource;
-import com.example.talendar.data.talesolitaire.TaleSolitaireRemoteDataSource;
 import com.example.talendar.showcreation.ShowCreationContract;
-import com.example.talendar.showcreation.ShowCreationPresenter;
+
 
 import java.util.List;
 

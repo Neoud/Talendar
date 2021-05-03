@@ -13,10 +13,12 @@ import com.example.talendar.data.tale.TaleRemoteDataSource;
 import com.example.talendar.data.talesolitaire.TaleSolitaireRemoteDataSource;
 import com.example.talendar.data.user.User;
 import com.example.talendar.data.user.UserRemoteDataSource;
+import com.example.talendar.home.HomeFragment;
 import com.example.talendar.showcreation.MyCreationFragment;
 import com.example.talendar.showcreation.MyFollowedCreationFragment;
 import com.example.talendar.showcreation.ShowCreationFragment;
 import com.example.talendar.showcreation.ShowCreationPresenter;
+import com.example.talendar.talesolitare.TaleSolitaireFragment;
 import com.example.talendar.userinfo.UserSystemInfoFragment;
 import com.example.talendar.userinfo.UserSystemInfoPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private UserSystemInfoFragment USInfoFragment;
     private ShowCreationFragment showCreationFragment;
+    private HomeFragment homeFragment;
+    private TaleSolitaireFragment taleSolitaireFragment;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         USInfoFragment = UserSystemInfoFragment.newInstance();
         showCreationFragment = ShowCreationFragment.newInstance();
+        homeFragment = HomeFragment.newInstance();
+        taleSolitaireFragment = new TaleSolitaireFragment();
         // 注册底部导航栏监听事件
         BottomNavigationView bnView = findViewById(R.id.bottom_nav_view);
         bnView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, userInfoFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, homeFragment).commit();
                         break;
                     case R.id.nav_tale_solitaire:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, view).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, taleSolitaireFragment).commit();
                         break;
                     case R.id.nav_creation:
                         getSupportFragmentManager().beginTransaction().replace(R.id.layout_nav_content, showCreationFragment).commit();

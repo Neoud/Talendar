@@ -23,6 +23,7 @@
         <activity android:name=".edittaleorts.EditTaleOrTSActivity"/>
         <activity android:name=".login.RegisterOrLoginActivity" />
         <activity android:name=".edituserinfo.EditUserInfoActivity"/>
+        <activity android:name=".showcreationdetail.ShowCreationDetailActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

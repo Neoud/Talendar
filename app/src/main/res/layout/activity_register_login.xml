@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/lt_for_registerOrLogin_replace"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </RelativeLayout>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
